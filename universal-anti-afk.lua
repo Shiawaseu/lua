@@ -1,13 +1,6 @@
 
 -- Anti-AFK by Shiawase#0001 (Works on 98% of games!)
 
----------------- CONFIG -------------------------------
-getgenv().delay = 5 -- [Delay between actions]
-getgenv().status = true -- [true = ON | flase = OFF]
-getgenv().keycode = 32 -- [DEFAULT IS 32 SPACE) Keycodes: https://create.roblox.com/docs/reference/engine/enums/KeyCode
-getgenv().preformance = false -- [true = save preformance | false = vice versa]
-
-
 ---------------- SCRIPTS ------------------------------
 
 local t = type or typeof -- idk doesnt matter
