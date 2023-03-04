@@ -28,7 +28,7 @@ if getgenv().onlyonerun ~= true then
    print("Udjustment")
 end -- no need for explanation
 if not cloneref then
-    Notify("WARNING","Exploit doesn't support cloneref, attempting to create a duplicate of it!",3)
+    Notify("WARNING","Exploit doesn't support cloneref, attempting to create a duplicate of it!","Okay",3)
     -- dooplicate!!
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/CloneRef.lua", true))() -- returned is getgenv().cloneref
 end
