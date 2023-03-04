@@ -4,6 +4,7 @@
 ---------------- CONFIG -------------------------------
 getgenv().delay = 5 -- [Delay between actions]
 getgenv().status = true -- [true = ON | flase = OFF]
+getgenv().keycode = 32 -- [DEFAULT IS 32 SPACE) Keycodes: https://create.roblox.com/docs/reference/engine/enums/KeyCode
 getgenv().preformance = false -- [true = save preformance | false = vice versa]
 
 
@@ -55,11 +56,10 @@ game:GetService("RunService"):Set3dRenderingEnabled(not getgenv().preformance) -
 if getgenv().onlyonerun ~= true then
     getgenv().onlyonerun = true -- hi
     Notify("Success","Anti-AFK by Shiawase#0001 ran | Status: "..tostring(getgenv().status).." | Delay: "..tostring(getgenv().delay).." | Preformance Mode: "..tostring(getgenv().preformance),"Got It!",math.huge) -- creds
-    while true and wait(tonumber(getgenv().delay)) and getgenv().status == true do -- I love making stuff complicated
-        --Keycodes: https://create.roblox.com/docs/reference/engine/enums/KeyCode
-        VIM:SendKeyEvent(true,32,false,game)
-        wait(math.random(.15,.25)) -- DONT ASK BUT ITS A MUST
-        VIM:SendKeyEvent(false,32,false,game)
+    while true and wait(tonumber(getgenv().delay)) and getgenv().status == true do
+        VIM:SendKeyEvent(true,getgenv().keycode,false,game)
+        wait(math.random(.15,.25))
+        VIM:SendKeyEvent(false,getgenv().keycode,false,game)
     end
 elseif getgenv().onlyonerun == true then
     Notify("Success","Anti-AFK by Shiawase#0001 updated | Status: "..tostring(getgenv().status).." | Delay: "..tostring(getgenv().delay).." | Preformance Mode: "..tostring(getgenv().preformance),"Got It!",math.huge) -- upd
