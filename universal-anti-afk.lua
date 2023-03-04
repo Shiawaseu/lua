@@ -33,7 +33,7 @@ if not cloneref then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/CloneRef.lua", true))() -- returned is getgenv().cloneref
 end
 -- Above was async code, so if not found AGAIN.
-if not cloneref then
+if not getgenv().cloneref then
     Notify("ERROR","Couldn't duplicate cloneref, please get a better exploit LOL.","100% Will do",math.huge)
     return
 end
