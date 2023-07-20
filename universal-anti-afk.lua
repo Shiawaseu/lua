@@ -1,11 +1,9 @@
 
--- Anti-AFK by Shiawase#0001 (Works on 98% of games!)
-
 ---------------- SCRIPTS ------------------------------
 
-local t = type or typeof -- idk doesnt matter
-local s = string -- useless 
-local SG = game:GetService("StarterGui") -- No need for cloning refrences, its primary
+local t = type or typeof
+local s = string
+local SG = game:GetService("StarterGui")
 function Notify(ti,tx,b1,d)
     SG:SetCore("SendNotification", {
            Title = tostring(ti),
@@ -22,10 +20,8 @@ if s.lower(t(getgenv().delay)) ~= "number" or s.lower(t(getgenv().status)) ~= "b
 end
 
 if getgenv().onlyonerun ~= true then
-   print("1st Run")
  else
    getgenv().onlyonerun = false -- no need to fill up mem
-   print("Udjustment")
 end -- no need for explanation
 if not cloneref then
     Notify("WARNING","Exploit doesn't support cloneref, attempting to create a duplicate of it!","Okay",3)
