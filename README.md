@@ -1,6 +1,7 @@
 ****Bunch of random stuff I work on, nothing big****
 
 # SimpleAimlock
+ - Doesn't support team check
 ```lua
 -- You can set some of those later on.
 getgenv().options = {
