@@ -1,5 +1,6 @@
 
 -- Made in half an hour, expect lots of bugs.
+-- No teamcheck
 
 -- Variables
 local players = game:GetService("Players")
