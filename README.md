@@ -20,7 +20,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/MEMEZNUT999/lua/main/
 
 ```
 # myhwid
- - meant to debug whitelist errors
+ - meant to debug whitelist errors, returns the name of the fingerprint and it's value
 ```lua
 local data = loadstring(game:HttpGet("https://raw.githubusercontent.com/MEMEZNUT999/lua/main/myhwid.lua", true))()
 -- usage
