@@ -19,7 +19,14 @@ getgenv().options = {
 loadstring(game:HttpGet("https://raw.githubusercontent.com/MEMEZNUT999/lua/main/SimpleAimlock.lua", true))()
 
 ```
-
+# myhwid
+ - meant to debug whitelist errors
+```lua
+-- You can set some of those later on.
+local data = loadstring(game:HttpGet("https://raw.githubusercontent.com/MEMEZNUT999/lua/main/SimpleAimlock.lua", true))()
+-- usage
+print("Your", data.type, "fingerprint is", data.hwid)
+```
  # **Universal Anti Afk Script**
 ```lua
 ---------------- CONFIG -------------------------------
