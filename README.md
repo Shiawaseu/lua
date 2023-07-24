@@ -22,10 +22,9 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/MEMEZNUT999/lua/main/
 # myhwid
  - meant to debug whitelist errors
 ```lua
--- You can set some of those later on.
 local data = loadstring(game:HttpGet("https://raw.githubusercontent.com/MEMEZNUT999/lua/main/myhwid.lua", true))()
 -- usage
-print("Your", data.type, "fingerprint is", data.hwid)
+print(string.format("Your %s is %s", data.type, data.hwid))
 ```
  # **Universal Anti Afk Script**
 ```lua
