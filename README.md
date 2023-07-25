@@ -1,12 +1,12 @@
 ****Bunch of random stuff I work on, nothing big****
 
 # SimpleAimlock
- - Doesn't support team check
 ```lua
 -- You can set some of those later on.
 getgenv().options = {
     aim = true,-- status
     aimpart = "Head", -- Default part to use
+    teamcheck = false, -- teamcheck
     aimkey = Enum.UserInputType.MouseButton2, -- To aim key
     partswitchkey = Enum.KeyCode.Q, -- To change parts key
     fov = 100, -- You are required to set this even if ur not using FOV circle
