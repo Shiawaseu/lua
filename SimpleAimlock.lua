@@ -1,8 +1,7 @@
-
 -- Made in half an hour, expect lots of bugs.
 -- No teamcheck
 
--- Variables
+
 local players = game:GetService("Players")
 local player = players.LocalPlayer
 local mouse = player:GetMouse()
@@ -11,7 +10,7 @@ local ispress = false
 local rotation = 1
 
 -- Adjust this table to add/remove parts from rotation
--- Just letting you know ur console is getting spammed if you set wrong parts.
+-- Just letting you know ur console is getting spammed if you set wrong parts. Default R6 parts
 local parts = {
 	"Head",
 	"Torso",
@@ -27,7 +26,6 @@ local function settings(option)
 end
 
 
--- edit settings
 local function update(option, newvalue)
 	getgenv().options[option] = newvalue
 end
@@ -57,22 +55,41 @@ end
 local function closesttocursor()
 	local closestPlayer, closestDistance -- set initial
 	local mousePosition = Vector2.new(mouse.X, mouse.Y)
-	for _, v in ipairs(players:GetPlayers()) do
-		if v ~= player and v.Character and v.Character:FindFirstChild("HumanoidRootPart") then
-			local screenPosition = camera:WorldToScreenPoint(v.Character.HumanoidRootPart.Position)
-			local distance = (Vector2.new(screenPosition.X, screenPosition.Y) - mousePosition).magnitude
-			if distance <= settings("fov") then
-				if not closestDistance or distance < closestDistance then
-					closestPlayer = v
-					closestDistance = distance
+	if settings("teamcheck") then
+		for _, v in ipairs(players:GetPlayers()) do
+			if v ~= player and v.Character and v.Character:FindFirstChild("HumanoidRootPart") and v.Team ~= player.Team then
+				local screenPosition = camera:WorldToScreenPoint(v.Character.HumanoidRootPart.Position)
+				local distance = (Vector2.new(screenPosition.X, screenPosition.Y) - mousePosition).magnitude
+				if distance <= settings("fov") then
+					if not closestDistance or distance < closestDistance then
+						closestPlayer = v
+						closestDistance = distance
+					end
 				end
 			end
 		end
+		return {
+			player = closestPlayer,
+			distance = closestDistance
+		}
+	else
+		for _, v in ipairs(players:GetPlayers()) do
+			if v ~= player and v.Character and v.Character:FindFirstChild("HumanoidRootPart") then
+				local screenPosition = camera:WorldToScreenPoint(v.Character.HumanoidRootPart.Position)
+				local distance = (Vector2.new(screenPosition.X, screenPosition.Y) - mousePosition).magnitude
+				if distance <= settings("fov") then
+					if not closestDistance or distance < closestDistance then
+						closestPlayer = v
+						closestDistance = distance
+					end
+				end
+			end
+		end
+		return {
+			player = closestPlayer,
+			distance = closestDistance
+		}
 	end
-	return {
-		player = closestPlayer,
-		distance = closestDistance
-	}
 end
 
 local function fovcircle()
@@ -95,7 +112,6 @@ end
 
 task.spawn(fovcircle)
 
--- lock
 local function LockCameraOnPlayer()
 	local targetPlayer = closesttocursor().player
 	if targetPlayer and targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart") then
@@ -109,7 +125,7 @@ end
 
 
 local function OnKeyDown(inputObject, isProcessed)
-    -- lock
+
 	if inputObject.KeyCode == settings("aimkey") then
 		ispress = true
 	end
@@ -119,37 +135,36 @@ local function OnKeyDown(inputObject, isProcessed)
 end
 
 local function OnKeyUp(inputObject, isProcessed)
-    -- lock
+
 	if inputObject.KeyCode == settings("aimkey") then
 		ispress = false
 	end
 	if inputObject.UserInputType == settings("aimkey") then
 		ispress = false
 	end
-    -- part switch, no need for down detection
+
 	if inputObject.KeyCode == settings("partswitchkey") then
 		local newpart = rotate()
 		update("aimpart", newpart)
 		Notify("Success", "Now locking on:" .. newpart, "k bro", 3)
 	end
 	if inputObject.UserInputType == settings("partswitchkey") then
-		local newpart = rotation()
+		local newpart = rotate()
 		update("aimpart", newpart)
 		Notify("Success", "Now locking on:" .. newpart, "k bro", 3)
 	end
 end
 
 
--- keys
 game:GetService("UserInputService").InputBegan:Connect(OnKeyDown)
 game:GetService("UserInputService").InputEnded:Connect(OnKeyUp)
 
 local function main()
 	if ispress and settings("aim") then
-		LockCameraOnPlayer() -- hacks
+		LockCameraOnPlayer()
 	end
 end
 
 game:GetService("RunService"):BindToRenderStep("main", 1, main)
 
-Notify("Success", "Simple Aimlock loaded.", "Thank youu", 3)
+Notify("Success", "Simple Aimlock loaded.", "k thx :3", 3)
