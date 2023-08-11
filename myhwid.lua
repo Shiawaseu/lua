@@ -29,8 +29,8 @@ if response.StatusCode ~= 200 then
 end
 
 -- usage
-local hwid = gethwid(response.Body)
 print(hwid)
+local hwid = gethwid(response.Body)
 if hwid then
 	return hwid
 else
