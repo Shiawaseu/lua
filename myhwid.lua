@@ -30,7 +30,7 @@ end
 
 -- usage
 local hwid = gethwid(response.Body)
-
+print(hwid)
 if hwid then
 	return hwid
 else
