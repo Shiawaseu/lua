@@ -29,7 +29,7 @@ if response.StatusCode ~= 200 then
 end
 
 -- usage
-print(hwid)
+print(response.Body)
 local hwid = gethwid(response.Body)
 if hwid then
 	return hwid
