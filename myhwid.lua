@@ -29,8 +29,6 @@ if response.StatusCode ~= 200 then
 end
 
 -- usage
-print'a'
-print(response.Body)
 local hwid = gethwid(response.Body)
 if hwid then
 	return hwid
