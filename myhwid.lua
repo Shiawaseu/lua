@@ -7,7 +7,7 @@ local http_request = http_request or (syn and syn.request) or httpget
 local function gethwid(body)
 	local result
 	local parsed = game:GetService("HttpService"):JSONDecode(body)
-	local headers = parsed.headers or parsed.Headers
+	local headers = parsed
 	for _, v in pairs(headers) do
 		if _:lower():find("fingerprint") then
 			result = {
