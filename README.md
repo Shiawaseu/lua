@@ -1,5 +1,14 @@
 ****Bunch of random stuff I work on, nothing big****
 
+# Servicebypasser
+```lua
+-- load 
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/MEMEZNUT999/lua/main/servicebypasser.lua", true))()
+
+-- usage
+local VIM = library.New("VirtualInputManager")
+print(VIM)
+```
 # SimpleAimlock
 ```lua
 -- You can set some of those later on.
