@@ -1,6 +1,7 @@
 ****Bunch of random stuff I work on, nothing big****
 
 # Servicebypasser
+ - use for autofarms or whatever, undetected btw
 ```lua
 -- load 
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/MEMEZNUT999/lua/main/servicebypasser.lua", true))()
