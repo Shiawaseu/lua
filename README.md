@@ -4,7 +4,7 @@
  - use for autofarms or whatever, undetected btw
 ```lua
 -- load 
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/MEMEZNUT999/lua/main/servicebypasser.lua", true))()
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/shiawaseu/lua/main/servicebypasser.lua", true))()
 
 -- usage
 local VIM = library.New("VirtualInputManager")
@@ -26,13 +26,13 @@ getgenv().options = {
     streamermode = false -- Disable/Enable Notifications
 }
 -- load 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/MEMEZNUT999/lua/main/SimpleAimlock.lua", true))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/shiawaseu/lua/main/SimpleAimlock.lua", true))()
 
 ```
 # myhwid
  - meant to debug whitelist errors, returns the name of the fingerprint and it's value
 ```lua
-local data = loadstring(game:HttpGet("https://raw.githubusercontent.com/MEMEZNUT999/lua/main/myhwid.lua", true))()
+local data = loadstring(game:HttpGet("https://raw.githubusercontent.com/shiawaseu/lua/main/myhwid.lua", true))()
 -- usage
 print(string.format("Your %s is %s", data.type, data.hwid))
 ```
