@@ -1,5 +1,6 @@
--- Made in half an hour, expect lots of bugs.
--- No teamcheck
+-- This code was generated using Luadeck™ | A Project by @shiawaseu
+
+-- originally made in half an hour, expect lots of bugs.
 
 
 local players = game:GetService("Players")
@@ -20,7 +21,6 @@ local parts = {
 }
 
 
--- fetch settings (just thought it looks cleaner)
 local function settings(option)
 	return getgenv().options[option]
 end
@@ -42,54 +42,39 @@ local function Notify(ti, tx, b1, d)
 		})
 	end
 end
--- Rotate between parts, please edit above lines to adjust part rotation, also may repeat twice.
+
+
 local function rotate()
-	if rotation >= 5 then
+
+	if rotation >= 5 then -- add/rem based on parts set
 		rotation = 1
 	end
-	local part
-	part = parts[rotation]
+
+	local part = parts[rotation]
 	rotation += 1
+
 	return part
 end
+
 local function closesttocursor()
-	local closestPlayer, closestDistance -- set initial
+	local closestPlayer, closestDistance
 	local mousePosition = Vector2.new(mouse.X, mouse.Y)
-	if settings("teamcheck") then
-		for _, v in ipairs(players:GetPlayers()) do
-			if v ~= player and v.Character and v.Character:FindFirstChild("HumanoidRootPart") and v.Team ~= player.Team then
-				local screenPosition = camera:WorldToScreenPoint(v.Character.HumanoidRootPart.Position)
-				local distance = (Vector2.new(screenPosition.X, screenPosition.Y) - mousePosition).magnitude
-				if distance <= settings("fov") then
-					if not closestDistance or distance < closestDistance then
-						closestPlayer = v
-						closestDistance = distance
-					end
+	for _, v in ipairs(players:GetPlayers()) do
+		if v ~= player and v.Character and v.Character:FindFirstChild("HumanoidRootPart") and ((settings("teamcheck") and v.Team ~= player.Team) or (not settings("teamcheck"))) then
+			local screenPosition = camera:WorldToScreenPoint(v.Character.HumanoidRootPart.Position)
+			local distance = (Vector2.new(screenPosition.X, screenPosition.Y) - mousePosition).magnitude
+			if distance <= settings("fov") then
+				if not closestDistance or distance < closestDistance then
+					closestPlayer = v
+					closestDistance = distance
 				end
 			end
 		end
-		return {
-			player = closestPlayer,
-			distance = closestDistance
-		}
-	else
-		for _, v in ipairs(players:GetPlayers()) do
-			if v ~= player and v.Character and v.Character:FindFirstChild("HumanoidRootPart") then
-				local screenPosition = camera:WorldToScreenPoint(v.Character.HumanoidRootPart.Position)
-				local distance = (Vector2.new(screenPosition.X, screenPosition.Y) - mousePosition).magnitude
-				if distance <= settings("fov") then
-					if not closestDistance or distance < closestDistance then
-						closestPlayer = v
-						closestDistance = distance
-					end
-				end
-			end
-		end
-		return {
-			player = closestPlayer,
-			distance = closestDistance
-		}
 	end
+	return {
+		player = closestPlayer,
+		distance = closestDistance
+	}
 end
 
 local function fovcircle()
@@ -139,6 +124,7 @@ local function OnKeyUp(inputObject, isProcessed)
 	if inputObject.KeyCode == settings("aimkey") then
 		ispress = false
 	end
+
 	if inputObject.UserInputType == settings("aimkey") then
 		ispress = false
 	end
@@ -148,11 +134,13 @@ local function OnKeyUp(inputObject, isProcessed)
 		update("aimpart", newpart)
 		Notify("Success", "Now locking on:" .. newpart, "k bro", 3)
 	end
+
 	if inputObject.UserInputType == settings("partswitchkey") then
 		local newpart = rotate()
 		update("aimpart", newpart)
 		Notify("Success", "Now locking on:" .. newpart, "k bro", 3)
 	end
+
 end
 
 
@@ -167,4 +155,4 @@ end
 
 game:GetService("RunService"):BindToRenderStep("main", 1, main)
 
-Notify("Success", "Simple Aimlock loaded.", "k thx :3", 3)
+Notify("Success", "Aimlock loaded.", "k thx :3", 3)
