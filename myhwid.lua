@@ -2,15 +2,21 @@
 -- supports.. most executors
 
 local lp = game:GetService("Players").LocalPlayer
-local http_request = http_request or (syn and syn.request) or httpget
+local http_request = http_request or (syn and syn.request) or httpget or request
 
 local function gethwid(body)
-	local result
+	local result = { fingerprint = {}, accountid = {} }
 	local parsed = game:GetService("HttpService"):JSONDecode(body)
 	local headers = parsed
 	for _, v in pairs(headers) do
 		if _:lower():find("fingerprint") then
-			result = {
+			result.fingerprint = {
+				type = _,
+				hwid = v
+			}
+		end
+		if _:lower():find("user-identifier") then
+			result.accountid = {
 				type = _,
 				hwid = v
 			}
@@ -28,11 +34,4 @@ if response.StatusCode ~= 200 then
 	return nil
 end
 
--- usage
-local hwid = gethwid(response.Body)
-if hwid then
-	return hwid
-else
-	lp:Kick("Failed to get HWID")
-	return nil
-end
+return gethwid()
