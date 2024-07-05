@@ -34,4 +34,4 @@ if response.StatusCode ~= 200 then
 	return nil
 end
 
-return gethwid()
+return gethwid(response.Body)
