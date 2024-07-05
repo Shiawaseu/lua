@@ -30,9 +30,9 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/shiawaseu/lua/main/Si
 
 ```
 # myhwid
- - meant to debug whitelist errors, returns the name of the fingerprint and it's value
+ - meant to debug whitelist errors, returns the name of the fingerprint/accountid and it's value
 ```lua
 local data = loadstring(game:HttpGet("https://raw.githubusercontent.com/shiawaseu/lua/main/myhwid.lua", true))()
 -- usage
-print(string.format("Your %s is %s", data.type, data.hwid))
+print(string.format("Your %s is %s | And your %s is %s", data.fingerprint.type, data.fingerprint.hwid, data.accountid.type, data.accountid.hwid))
 ```
